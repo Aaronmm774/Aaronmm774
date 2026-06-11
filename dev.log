@@ -1,0 +1,15 @@
+
+> engineering-company-site@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.4
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 6s (1026 modules)
+ GET / 200 in 7341ms
+ GET / 200 in 996ms
+ GET / 200 in 1210ms
