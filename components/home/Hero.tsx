@@ -95,7 +95,7 @@ export function Hero() {
 
             <div className="mt-5 max-w-2xl rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100 backdrop-blur-md">
               <p className="font-semibold text-white">
-                Planning a building, factory, lodge, church or infrastructure project?
+                Planning a building, lodge, church or infrastructure project?
               </p>
               <p className="mt-1 text-slate-200">
                 Send architectural drawings, a site plan or a project brief for
