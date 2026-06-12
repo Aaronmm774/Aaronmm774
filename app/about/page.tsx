@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   Clock,
   FileCheck2,
+  Handshake,
   Lightbulb,
   MessageSquare,
   ShieldCheck,
@@ -88,6 +89,61 @@ const processSteps = [
   'Coordinate civil, structural, architectural, and services inputs',
   'Review calculations, drawings, and model outputs before issue',
   'Respond to site feedback, approvals, and construction-stage queries',
+];
+
+const trustSignals = [
+  {
+    title: 'Registered consulting leadership',
+    description:
+      'Led by Eng. Daniel K. Manza, Registered Consulting Engineer E640, with professional oversight across civil and structural assignments.',
+    icon: BadgeCheck,
+  },
+  {
+    title: 'Professional protection',
+    description:
+      'Professional indemnity and project documentation details can be provided to clients during appointment and due diligence.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Technical governance',
+    description:
+      'Design work is supported by defined assumptions, calculation reviews, drawing checks, coordination records, and controlled issue stages.',
+    icon: FileCheck2,
+  },
+  {
+    title: 'Client references',
+    description:
+      'Selected references, company registration details, and project credentials are available to qualified clients and project teams on request.',
+    icon: Handshake,
+  },
+];
+
+const keyPersonnel = [
+  {
+    role: 'Founder and technical lead',
+    name: 'Eng. Daniel K. Manza',
+    description:
+      'Provides senior engineering direction, design judgement, client coordination, and professional review.',
+  },
+  {
+    role: 'Engineering design team',
+    name: 'Civil and structural engineers',
+    description:
+      'Supports analysis, design development, technical documentation, coordination, and construction-stage queries.',
+  },
+  {
+    role: 'Documentation team',
+    name: 'CAD and BIM support',
+    description:
+      'Develops drawings, models, revisions, and coordinated deliverables for review and issue.',
+  },
+];
+
+const collaborators = [
+  { name: 'Dunhill Building Contractors Ltd', logo: '/patners/Duhill.jpeg' },
+  { name: 'Kayvee Construction Ltd', logo: '/patners/Kayvee%20Construction%20Ltd.jpeg' },
+  { name: 'Fisic Designs', logo: '/patners/Fisic%20Designs.jpeg' },
+  { name: 'Studio Infinity LLP Architects', logo: '/patners/Studio%20Infinity.jpeg' },
 ];
 
 export const metadata: Metadata = {
@@ -191,6 +247,131 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-8 lg:px-8">
+        <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
+              Trust Signals
+            </p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-slate-950">
+              Professional credibility for serious project decisions.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              Engineering appointments require confidence in competence,
+              accountability, documentation, and continuity. Masfy presents the
+              technical proof clients need before engaging a consultancy.
+            </p>
+            <a
+              href="/Masfy%20Profile%202025.pdf"
+              download
+              className="mt-5 inline-flex rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Download Company Profile
+            </a>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {trustSignals.map((signal) => {
+              const Icon = signal.icon;
+
+              return (
+                <article
+                  key={signal.title}
+                  className="rounded-3xl border border-border bg-white p-5 shadow-sm"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-extrabold text-slate-950">
+                    {signal.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {signal.description}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-8 lg:px-8">
+        <div className="overflow-hidden rounded-[2rem] border border-border bg-surface shadow-sm">
+          <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
+                Technical Team
+              </p>
+              <h2 className="mt-3 text-3xl font-extrabold leading-tight text-slate-950">
+                Senior review with practical design support.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                The firm combines senior professional oversight with design,
+                documentation, BIM/CAD, coordination, and construction-stage
+                support. More individual profiles can be added as approved team
+                information becomes available.
+              </p>
+            </div>
+
+            <div className="grid gap-3">
+              {keyPersonnel.map((person) => (
+                <article
+                  key={person.role}
+                  className="rounded-3xl border border-border bg-white p-5 shadow-sm"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
+                    {person.role}
+                  </p>
+                  <h3 className="mt-2 text-lg font-extrabold text-slate-950">
+                    {person.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {person.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-border bg-white p-6 sm:p-8">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
+                  Worked With
+                </p>
+                <h3 className="mt-2 text-2xl font-extrabold text-slate-950">
+                  Selected project collaborators.
+                </h3>
+              </div>
+              <p className="max-w-xl text-sm leading-7 text-slate-600">
+                A sample of contractors, consultants, and project teams connected
+                to Masfy&apos;s building and development work.
+              </p>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {collaborators.map((partner) => (
+                <div
+                  key={partner.name}
+                  className="rounded-2xl border border-border bg-surface p-4"
+                >
+                  <div className="flex h-16 items-center justify-center rounded-xl bg-white p-3">
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <p className="mt-3 text-sm font-extrabold leading-tight text-slate-950">
+                    {partner.name}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

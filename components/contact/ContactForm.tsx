@@ -12,13 +12,17 @@ const services = [
 ];
 
 const projectTypes = [
-  "Residential / Apartments",
+  "Apartments",
+  "Villas & Townhouses",
   "Commercial",
   "Hospitality",
   "Industrial",
-  "Institutional",
-  "Infrastructure / Civil Works",
+  "Churches & Institutions",
+  "Civil Works",
   "Structural Assessment",
+  "Retaining Walls",
+  "Warehouses",
+  "Mixed-use Developments",
   "Other",
 ];
 
@@ -142,7 +146,7 @@ export function ContactForm() {
   }
 
   return (
-    <section className="mx-auto max-w-6xl">
+    <section id="project-inquiry" className="mx-auto max-w-6xl scroll-mt-28">
       <div className="mb-10">
         <p className="text-sm uppercase tracking-[0.24em] text-brand-500">
           Contact us

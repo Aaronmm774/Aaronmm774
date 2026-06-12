@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 const siteUrl = 'https://masfyconsultants.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', '/about', '/projects', '/services', '/careers', '/insights', '/contact'];
+  const routes = ['', '/about', '/projects', '/services', '/careers', '/contact'];
 
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,

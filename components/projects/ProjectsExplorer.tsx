@@ -19,19 +19,17 @@ type ProjectsExplorerProps = {
 
 const preferredCategories = [
   'All',
-  'Residential',
   'Apartments',
+  'Villas & Townhouses',
   'Commercial',
   'Hospitality',
   'Industrial',
-  'Institutional',
-  'Churches',
-  'Factories',
-  'Warehouses',
-  'Structural Assessments',
-  'Mixed Development',
+  'Churches & Institutions',
   'Civil Works',
-  'Townhouses',
+  'Structural Assessments',
+  'Retaining Walls',
+  'Warehouses',
+  'Mixed-use Developments',
 ];
 
 export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {

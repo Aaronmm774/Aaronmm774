@@ -5,6 +5,8 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Download,
+  Upload,
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -80,29 +82,56 @@ export function Hero() {
         <div className="relative flex min-h-[430px] flex-col justify-between gap-6 px-5 py-6 sm:min-h-[470px] sm:px-8 sm:py-7 lg:min-h-[560px] lg:px-12 lg:py-10">
           <div className="max-w-3xl py-2 lg:py-0">
             <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Civil & Structural Engineering Solutions for Safe, Efficient and Buildable Projects.
+              Civil & Structural Engineering for Safe, Efficient and Buildable Projects
             </h1>
 
             <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8">
-              We help developers, contractors, and organizations plan, design,
-              coordinate, and deliver structural, civil, industrial, and digital
-              engineering work with fewer blind spots.
+              Masfy Consulting Engineers supports developers, architects,
+              contractors and institutions with structural design, civil works,
+              drainage, infrastructure planning, assessments and
+              construction-stage engineering support across Kenya and the
+              region.
             </p>
+
+            <div className="mt-5 max-w-2xl rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100 backdrop-blur-md">
+              <p className="font-semibold text-white">
+                Planning a building, factory, lodge, church or infrastructure project?
+              </p>
+              <p className="mt-1 text-slate-200">
+                Send architectural drawings, a site plan or a project brief for
+                civil and structural engineering review.
+              </p>
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-700 md:hover:-translate-y-0.5"
               >
-                Start a project
+                Start a Project
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/projects"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
               >
-                Explore work
+                View Our Work
               </Link>
+              <Link
+                href="/contact#project-inquiry"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
+              >
+                Upload Drawings
+                <Upload className="h-4 w-4" />
+              </Link>
+              <a
+                href="/Masfy%20Profile%202025.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
+              >
+                Company Profile
+                <Download className="h-4 w-4" />
+              </a>
             </div>
           </div>
 

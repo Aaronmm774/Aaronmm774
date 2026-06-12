@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, CalendarCheck, FileText, MessageSquare } from 'lucide-react';
+import { ArrowRight, CalendarCheck, Download, FileText, MessageSquare, Upload } from 'lucide-react';
 
 const steps = [
   { label: 'Share the brief', icon: MessageSquare },
@@ -21,11 +21,12 @@ export function CTA() {
               Ready to start?
             </p>
             <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight sm:text-4xl">
-              Bring us your project challenge. We will help shape the engineering path.
+              Request an engineering review before the project gets expensive to change.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-blue-50 sm:text-base">
-              Tell us what you are planning, what is uncertain, and what needs
-              to move. We will help turn it into a clear technical scope.
+              Share architectural drawings, a site plan, structural concerns or
+              a project brief. Masfy will help define the civil and structural
+              scope, risks, assumptions and next technical steps.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -33,15 +34,24 @@ export function CTA() {
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-lg shadow-slate-950/10 transition hover:bg-slate-100 md:hover:-translate-y-0.5"
               >
-                Contact us
+                Request Engineering Consultation
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/projects"
+                href="/contact#project-inquiry"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20 md:hover:-translate-y-0.5"
               >
-                View project work
+                Upload Drawings
+                <Upload className="h-4 w-4" />
               </Link>
+              <a
+                href="/Masfy%20Profile%202025.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20 md:hover:-translate-y-0.5"
+              >
+                Download Company Profile
+                <Download className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
