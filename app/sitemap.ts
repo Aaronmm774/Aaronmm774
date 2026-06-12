@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const siteUrl = 'https://www.masfyconsultants.com';
+const siteUrl = 'https://masfyconsultants.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ['', '/about', '/projects', '/services', '/careers', '/insights', '/contact'];

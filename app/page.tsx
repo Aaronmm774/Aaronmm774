@@ -10,9 +10,20 @@ import { CTA } from '@/components/home/CTA';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Masfy Consulting Engineers | Civil and Structural Engineers in Nairobi',
+  title:
+    'Masfy Consulting Engineers | Civil & Structural Engineering Solutions in Kenya',
   description:
-    'Masfy Consulting Engineers provides civil and structural engineering consultancy in Nairobi and across Kenya for safe, efficient, and buildable projects.',
+    'Civil & structural engineering solutions for safe, efficient and buildable projects. Masfy Consulting Engineers serves clients in Nairobi, Kenya and the region.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title:
+      'Masfy Consulting Engineers | Civil & Structural Engineering Solutions in Kenya',
+    description:
+      'Civil & structural engineering solutions for safe, efficient and buildable projects across Kenya and the region.',
+    url: '/',
+  },
 };
 
 export default function HomePage() {

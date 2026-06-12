@@ -5,7 +5,7 @@ import { Footer } from '@/components/home/Footer';
 import { WhatsAppWidget } from '@/components/contact/WhatsAppWidget';
 import { ScrollRestoration } from '@/components/navigation/ScrollRestoration';
 
-const siteUrl = 'https://www.masfyconsultants.com';
+const siteUrl = 'https://masfyconsultants.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description:
     'Civil and structural engineering solutions for safe, efficient, and buildable projects across Kenya and the region.',
   applicationName: 'Masfy Consulting Engineers',
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/Masfy Logo 2025_New_Version.png',
     apple: '/Masfy Logo 2025_New_Version.png',
