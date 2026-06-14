@@ -25,16 +25,13 @@ export default defineType({
       options: {
         list: [
           'Apartments',
-          'Villas & Townhouses',
+          'Townhouses',
           'Commercial',
           'Hospitality',
-          'Mixed-use Developments',
           'Civil Works',
           'Industrial',
-          'Churches & Institutions',
+          'Religious Institutions',
           'Warehouses',
-          'Retaining Walls',
-          'Structural Assessments',
         ],
       },
       validation: (Rule) => Rule.required(),

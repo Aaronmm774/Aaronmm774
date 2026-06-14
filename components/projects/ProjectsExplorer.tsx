@@ -20,17 +20,29 @@ type ProjectsExplorerProps = {
 const preferredCategories = [
   'All',
   'Apartments',
-  'Villas & Townhouses',
+  'Townhouses',
   'Commercial',
   'Hospitality',
   'Industrial',
-  'Churches & Institutions',
+  'Religious Institutions',
   'Civil Works',
+  'Warehouses',
+];
+
+const hiddenCategories = new Set([
+  'Infrastructure',
+  'Renovations',
   'Structural Assessments',
   'Retaining Walls',
-  'Warehouses',
+  'Mixed Development',
   'Mixed-use Developments',
-];
+]);
+
+function normalizeCategory(industry: string) {
+  if (industry === 'Villas & Townhouses') return 'Townhouses';
+  if (industry === 'Churches & Institutions') return 'Religious Institutions';
+  return industry;
+}
 
 export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -39,16 +51,19 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const categories = useMemo(() => {
-    const hiddenCategories = new Set(['Infrastructure', 'Renovations']);
     const projectCategories = projects
       .map((project) => project.industry)
       .filter((industry) => !hiddenCategories.has(industry));
-    return Array.from(new Set([...preferredCategories, ...projectCategories]));
+    return Array.from(
+      new Set([...preferredCategories, ...projectCategories.map(normalizeCategory)]),
+    );
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'All') return projects;
-    return projects.filter((project) => project.industry === activeCategory);
+    return projects.filter(
+      (project) => normalizeCategory(project.industry) === activeCategory,
+    );
   }, [activeCategory, projects]);
 
   const closeProject = () => {

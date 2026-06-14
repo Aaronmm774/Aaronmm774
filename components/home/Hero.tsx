@@ -5,8 +5,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Download,
-  Upload,
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -93,16 +91,6 @@ export function Hero() {
               region.
             </p>
 
-            <div className="mt-5 max-w-2xl rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100 backdrop-blur-md">
-              <p className="font-semibold text-white">
-                Planning a building, lodge, church or infrastructure project?
-              </p>
-              <p className="mt-1 text-slate-200">
-                Send architectural drawings, a site plan or a project brief for
-                civil and structural engineering review.
-              </p>
-            </div>
-
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/contact"
@@ -117,21 +105,6 @@ export function Hero() {
               >
                 View Our Work
               </Link>
-              <Link
-                href="/contact#project-inquiry"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
-              >
-                Upload Drawings
-                <Upload className="h-4 w-4" />
-              </Link>
-              <a
-                href="/Masfy%20Profile%202025.pdf"
-                download
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
-              >
-                Company Profile
-                <Download className="h-4 w-4" />
-              </a>
             </div>
           </div>
 
