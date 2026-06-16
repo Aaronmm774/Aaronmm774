@@ -34,12 +34,11 @@ const hiddenCategories = new Set([
   'Renovations',
   'Structural Assessments',
   'Retaining Walls',
-  'Mixed Development',
-  'Mixed-use Developments',
 ]);
 
 function normalizeCategory(industry: string) {
   if (industry === 'Villas & Townhouses') return 'Townhouses';
+  if (industry === 'Churches') return 'Religious Institutions';
   if (industry === 'Churches & Institutions') return 'Religious Institutions';
   return industry;
 }
@@ -53,9 +52,10 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
   const categories = useMemo(() => {
     const projectCategories = projects
       .map((project) => project.industry)
+      .map(normalizeCategory)
       .filter((industry) => !hiddenCategories.has(industry));
     return Array.from(
-      new Set([...preferredCategories, ...projectCategories.map(normalizeCategory)]),
+      new Set([...preferredCategories, ...projectCategories]),
     );
   }, [projects]);
 
@@ -153,7 +153,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
                     className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105"
                   />
                   <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-900 backdrop-blur">
-                    {project.industry}
+                    {normalizeCategory(project.industry)}
                   </div>
                   <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg shadow-brand-500/25">
                     <ArrowUpRight className="h-5 w-5" />
@@ -213,7 +213,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
                 </button>
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
                   <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-100">
-                    {selectedProject.industry}
+                    {normalizeCategory(selectedProject.industry)}
                   </p>
                   <h2 className="mt-2 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
                     {selectedProject.title}
