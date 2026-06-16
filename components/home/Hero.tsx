@@ -8,7 +8,14 @@ import {
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
-const slides = [
+export type HeroSlide = {
+  image: string;
+  label: string;
+  title: string;
+  note: string;
+};
+
+const fallbackSlides: HeroSlide[] = [
   {
     image: '/projects/Jubilee Isurance.jpg',
     label: 'Commercial',
@@ -29,13 +36,18 @@ const slides = [
   },
 ];
 
+type HeroProps = {
+  slides?: HeroSlide[];
+};
+
 const stats = [
   { value: '12+', label: 'Years of practice' },
   { value: '200+', label: 'Projects delivered' },
   { value: '80+', label: 'Partner companies' },
 ];
 
-export function Hero() {
+export function Hero({ slides: providedSlides }: HeroProps) {
+  const slides = providedSlides && providedSlides.length > 0 ? providedSlides : fallbackSlides;
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);

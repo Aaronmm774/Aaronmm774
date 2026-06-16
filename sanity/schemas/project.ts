@@ -24,10 +24,12 @@ export default defineType({
       type: 'string',
       options: {
         list: [
+          'Residential',
           'Apartments',
           'Townhouses',
           'Commercial',
           'Hospitality',
+          'Mixed Developments',
           'Civil Works',
           'Industrial',
           'Religious Institutions',

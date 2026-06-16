@@ -12,11 +12,13 @@ const services = [
 ];
 
 const projectTypes = [
+  "Residential",
   "Apartments",
   "Townhouses",
   "Commercial",
   "Hospitality",
   "Industrial",
+  "Mixed Developments",
   "Religious Institutions",
   "Civil Works",
   "Warehouses",

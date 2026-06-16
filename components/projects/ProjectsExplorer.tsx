@@ -19,11 +19,13 @@ type ProjectsExplorerProps = {
 
 const preferredCategories = [
   'All',
+  'Residential',
   'Apartments',
   'Townhouses',
   'Commercial',
   'Hospitality',
   'Industrial',
+  'Mixed Developments',
   'Religious Institutions',
   'Civil Works',
   'Warehouses',
@@ -40,6 +42,8 @@ function normalizeCategory(industry: string) {
   if (industry === 'Villas & Townhouses') return 'Townhouses';
   if (industry === 'Churches') return 'Religious Institutions';
   if (industry === 'Churches & Institutions') return 'Religious Institutions';
+  if (industry === 'Mixed Development') return 'Mixed Developments';
+  if (industry === 'Mixed-use Developments') return 'Mixed Developments';
   return industry;
 }
 
