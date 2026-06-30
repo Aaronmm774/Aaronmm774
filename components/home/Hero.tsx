@@ -85,7 +85,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           />
         ))}
 
-        <div className="absolute left-4 top-4 rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6">
+        <div className="absolute left-4 top-4 max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:max-w-none">
           {slides[current]?.label}
         </div>
 
@@ -95,7 +95,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           </h1>
         </div>
 
-        <div className="absolute bottom-4 left-4 max-w-[calc(100%-2rem)] text-white sm:bottom-6 sm:left-6 sm:max-w-md">
+        <div className="absolute bottom-4 left-4 right-4 text-white sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-md">
           <p className="text-sm font-extrabold [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-base">
             {slides[current]?.title}
           </p>
@@ -104,7 +104,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           </p>
         </div>
 
-        <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full border border-white/70 bg-white/92 p-1.5 shadow-xl shadow-slate-950/12 backdrop-blur sm:bottom-6 sm:right-6">
+        <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full border border-white/70 bg-white/92 p-1.5 shadow-xl shadow-slate-950/12 backdrop-blur sm:bottom-6 sm:right-6 sm:top-auto">
           <button
             onClick={prev}
             className="flex h-9 w-9 items-center justify-center rounded-full text-slate-950 transition hover:bg-slate-100"
