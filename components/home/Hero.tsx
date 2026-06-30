@@ -71,7 +71,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
 
   return (
     <section className="relative w-full">
-      <div className="relative min-h-[430px] overflow-hidden rounded-[1.5rem] bg-slate-950 shadow-2xl shadow-slate-950/20 sm:min-h-[470px] sm:rounded-[2rem] lg:min-h-[560px]">
+      <div className="relative min-h-[390px] overflow-hidden rounded-[1.5rem] bg-slate-100 shadow-2xl shadow-slate-950/12 sm:min-h-[460px] sm:rounded-[2rem] lg:min-h-[620px]">
         {slides.map((slide, index) => (
           <img
             key={slide.image}
@@ -85,90 +85,103 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           />
         ))}
 
-        <div className="absolute inset-0 bg-slate-950/25" />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-slate-950/75 to-transparent" />
+        <div className="absolute left-4 top-4 rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6">
+          {slides[current]?.label}
+        </div>
 
-        <div className="relative flex min-h-[430px] flex-col justify-between gap-6 px-5 py-6 sm:min-h-[470px] sm:px-8 sm:py-7 lg:min-h-[560px] lg:px-12 lg:py-10">
-          <div className="max-w-3xl py-2 lg:py-0">
-            <h1 className="max-w-3xl text-3xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Civil & Structural Engineering for Safe, Efficient and Buildable Projects
-            </h1>
+        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 text-center text-white sm:inset-x-8">
+          <h1 className="mx-auto max-w-5xl text-3xl font-extrabold leading-[1.05] tracking-tight [text-shadow:0_3px_20px_rgba(2,6,23,0.72)] sm:text-5xl lg:text-6xl">
+            Engineering Safe, Buildable Projects
+          </h1>
+        </div>
 
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8">
+        <div className="absolute bottom-4 left-4 max-w-[calc(100%-2rem)] text-white sm:bottom-6 sm:left-6 sm:max-w-md">
+          <p className="text-sm font-extrabold [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-base">
+            {slides[current]?.title}
+          </p>
+          <p className="mt-1 line-clamp-2 text-xs font-medium leading-5 [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-sm">
+            {slides[current]?.note}
+          </p>
+        </div>
+
+        <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full border border-white/70 bg-white/92 p-1.5 shadow-xl shadow-slate-950/12 backdrop-blur sm:bottom-6 sm:right-6">
+          <button
+            onClick={prev}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-slate-950 transition hover:bg-slate-100"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+
+          <div className="hidden items-center gap-2 sm:flex">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className="relative h-1.5 overflow-hidden rounded-full transition-all duration-300"
+                style={{
+                  width: i === current ? 32 : 8,
+                  background: i === current ? '#2563EB' : 'rgba(15,23,42,0.2)',
+                }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={next}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-slate-950 transition hover:bg-slate-100"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-6 rounded-[1.5rem] border border-border bg-white p-5 shadow-sm sm:mt-8 sm:rounded-[2rem] sm:p-7 lg:p-8">
+        <div className="grid gap-7 lg:grid-cols-[1fr_0.68fr] lg:items-center">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-brand-500">
+              Civil & structural consultancy
+            </p>
+            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">
               Masfy Consulting Engineers supports developers, architects,
               contractors and institutions with structural design, civil works,
-              drainage, infrastructure planning, assessments and
-              construction-stage engineering support across Kenya and the
-              region.
+              drainage, infrastructure planning, assessments and construction-stage
+              engineering support across Kenya and the region.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-700 md:hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition hover:bg-brand-700 md:hover:-translate-y-0.5"
               >
                 Start a Project
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20 md:hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-7 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-brand-500/40 hover:text-slate-950 md:hover:-translate-y-0.5"
               >
                 View Our Work
               </Link>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="grid w-full max-w-[330px] grid-cols-3 gap-2 rounded-2xl border border-white/10 bg-white/[0.07] p-2 backdrop-blur-md sm:w-fit sm:max-w-none">
-              {stats.map((stat) => (
-                <div key={stat.label} className="rounded-xl bg-white/[0.06] px-3 py-2.5">
-                  <p className="text-lg font-extrabold leading-none text-white sm:text-xl">{stat.value}</p>
-                  <p className="mt-1 text-[9px] font-semibold uppercase tracking-widest text-slate-300">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex w-full max-w-xs items-center justify-between gap-2 rounded-full border border-white/15 bg-white/10 p-1.5 backdrop-blur-md sm:w-auto sm:min-w-[260px]">
-              <button
-                onClick={prev}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15"
-                aria-label="Previous slide"
+          <div className="grid grid-cols-3 gap-2 lg:justify-self-end">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl border border-border bg-surface px-3 py-4 text-center"
               >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-
-              <div className="flex flex-1 items-center justify-center gap-2">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => goTo(i)}
-                    aria-label={`Go to slide ${i + 1}`}
-                    className="relative h-1.5 overflow-hidden rounded-full transition-all duration-300"
-                    style={{
-                      width: i === current ? 32 : 8,
-                      background:
-                        i === current ? '#2563EB' : 'rgba(255,255,255,0.35)',
-                    }}
-                  >
-                    {i === current && (
-                      <span className="absolute inset-y-0 left-0 w-full rounded-full bg-white/45" />
-                    )}
-                  </button>
-                ))}
+                <p className="text-2xl font-extrabold leading-none text-slate-950 sm:text-3xl">
+                  {stat.value}
+                </p>
+                <p className="mx-auto mt-2 max-w-24 text-[9px] font-semibold uppercase leading-4 tracking-widest text-slate-500">
+                  {stat.label}
+                </p>
               </div>
-
-              <button
-                onClick={next}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white transition hover:bg-white/15"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
