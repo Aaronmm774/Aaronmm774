@@ -6,7 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type HeroSlide = {
   image: string;
@@ -64,27 +64,54 @@ function sanityImageSrcSet(src: string) {
 export function Hero({ slides: providedSlides }: HeroProps) {
   const slides = providedSlides && providedSlides.length > 0 ? providedSlides : fallbackSlides;
   const [current, setCurrent] = useState(0);
+  const [previous, setPrevious] = useState<number | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(() => new Set());
+  const currentRef = useRef(0);
+
+  const selectSlide = useCallback((target: number) => {
+    if (target === currentRef.current) return;
+
+    setPrevious(currentRef.current);
+    currentRef.current = target;
+    setCurrent(target);
+  }, []);
 
   const next = useCallback(
-    () => setCurrent((c) => (c + 1) % slides.length),
-    [slides.length],
+    () => selectSlide((currentRef.current + 1) % slides.length),
+    [selectSlide, slides.length],
   );
   const prev = useCallback(
-    () => setCurrent((c) => (c - 1 + slides.length) % slides.length),
-    [slides.length],
+    () =>
+      selectSlide(
+        (currentRef.current - 1 + slides.length) % slides.length,
+      ),
+    [selectSlide, slides.length],
   );
-  const goTo = useCallback((i: number) => setCurrent(i), []);
+  const goTo = useCallback((i: number) => selectSlide(i), [selectSlide]);
 
   useEffect(() => {
-    const id = setInterval(next, 5500);
+    const id = setInterval(next, 7500);
     return () => clearInterval(id);
   }, [next]);
 
   const visibleIndexes = new Set([
     current,
+    ...(previous === null ? [] : [previous]),
     (current - 1 + slides.length) % slides.length,
     (current + 1) % slides.length,
   ]);
+  const currentIsReady = loadedImages.has(current);
+  const shownIndex = currentIsReady ? current : previous ?? current;
+
+  function handleImageLoad(index: number) {
+    setLoadedImages((loaded) => {
+      if (loaded.has(index)) return loaded;
+
+      const nextLoaded = new Set(loaded);
+      nextLoaded.add(index);
+      return nextLoaded;
+    });
+  }
 
   return (
     <section className="relative w-full">
@@ -99,15 +126,20 @@ export function Hero({ slides: providedSlides }: HeroProps) {
               sizes="100vw"
               loading="eager"
               decoding="async"
-              className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
-                index === current ? 'opacity-100' : 'opacity-0'
+              onLoad={() => handleImageLoad(index)}
+              className={`hero-slide-image pointer-events-none absolute inset-0 h-full w-full object-cover will-change-[opacity,transform] ${
+                index === current && currentIsReady
+                  ? 'scale-100 opacity-100'
+                  : index === previous && !currentIsReady
+                    ? 'scale-100 opacity-100'
+                    : 'scale-[1.05] opacity-0'
               }`}
             />
           ) : null,
         )}
 
         <div className="absolute left-4 top-4 hidden max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:block sm:max-w-none">
-          {slides[current]?.label}
+          {slides[shownIndex]?.label}
         </div>
 
         <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 text-center text-white sm:inset-x-8">
@@ -118,10 +150,10 @@ export function Hero({ slides: providedSlides }: HeroProps) {
 
         <div className="absolute bottom-4 left-4 right-4 hidden text-white sm:bottom-6 sm:left-6 sm:right-auto sm:block sm:max-w-md">
           <p className="text-sm font-extrabold [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-base">
-            {slides[current]?.title}
+            {slides[shownIndex]?.title}
           </p>
           <p className="mt-1 line-clamp-2 text-xs font-medium leading-5 [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-sm">
-            {slides[current]?.note}
+            {slides[shownIndex]?.note}
           </p>
         </div>
 
