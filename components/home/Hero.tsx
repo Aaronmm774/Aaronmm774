@@ -71,7 +71,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
 
   return (
     <section className="relative w-full">
-      <div className="relative min-h-[390px] w-full overflow-hidden bg-slate-100 sm:min-h-[460px] lg:min-h-[620px]">
+      <div className="relative min-h-[560px] w-full overflow-hidden bg-slate-100 sm:min-h-[560px] lg:min-h-[620px]">
         {slides.map((slide, index) => (
           <img
             key={slide.image}
@@ -85,17 +85,17 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           />
         ))}
 
-        <div className="absolute left-4 top-4 max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:max-w-none">
+        <div className="absolute left-4 top-4 hidden max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:block sm:max-w-none">
           {slides[current]?.label}
         </div>
 
-        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 text-center text-white sm:inset-x-8">
+        <div className="absolute inset-x-4 top-1/2 hidden -translate-y-1/2 text-center text-white sm:inset-x-8 sm:block">
           <h1 className="mx-auto max-w-5xl text-3xl font-extrabold leading-[1.05] tracking-tight [text-shadow:0_3px_20px_rgba(2,6,23,0.72)] sm:text-5xl lg:text-6xl">
             Engineering Safe, Buildable Projects
           </h1>
         </div>
 
-        <div className="absolute bottom-4 left-4 right-4 text-white sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-md">
+        <div className="absolute bottom-4 left-4 right-4 hidden text-white sm:bottom-6 sm:left-6 sm:right-auto sm:block sm:max-w-md">
           <p className="text-sm font-extrabold [text-shadow:0_2px_12px_rgba(2,6,23,0.72)] sm:text-base">
             {slides[current]?.title}
           </p>
