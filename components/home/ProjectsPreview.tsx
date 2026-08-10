@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Building2, Hotel, MapPinned, Warehouse } from 'lucide-react';
 import { getFeaturedProjects } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
@@ -53,12 +54,13 @@ export async function ProjectsPreview() {
               >
                 <Link href="/projects" className="block h-full">
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
-                      loading="eager"
-                      decoding="async"
-                      className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      quality={75}
+                      className="object-cover transition duration-500 md:group-hover:scale-105"
                     />
                     <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-800">
                       <ProjectIcon className="h-3.5 w-3.5 text-brand-500" />

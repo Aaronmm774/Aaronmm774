@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import Image from 'next/image';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ArrowUpRight,
   Calendar,
@@ -69,6 +70,30 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
       (project) => normalizeCategory(project.industry) === activeCategory,
     );
   }, [activeCategory, projects]);
+
+  useEffect(() => {
+    if (!selectedProject && galleryIndex === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== 'Escape') return;
+
+      if (galleryIndex !== null) {
+        setGalleryIndex(null);
+      } else {
+        setSelectedProject(null);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject, galleryIndex]);
 
   const closeProject = () => {
     setSelectedProject(null);
@@ -151,10 +176,13 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
                 className="block w-full text-left"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition duration-700 md:group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    quality={72}
+                    className="object-cover transition duration-500 md:group-hover:scale-105"
                   />
                   <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-900 backdrop-blur">
                     {normalizeCategory(project.industry)}
@@ -198,13 +226,21 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
       </section>
 
       {selectedProject && (
-        <div className="fixed inset-0 z-[80] overflow-y-auto bg-slate-950/70 px-3 py-4 sm:px-6 sm:py-6">
+        <div
+          className="fixed inset-0 z-[80] overflow-y-auto bg-slate-950/70 px-3 py-4 sm:px-6 sm:py-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedProject.title} project details`}
+        >
           <div className="mx-auto max-w-5xl overflow-hidden rounded-[1.5rem] bg-white shadow-2xl sm:rounded-[2rem]">
               <div className="relative h-[280px] overflow-hidden sm:h-[420px]">
-                <img
+                <Image
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 1024px, 100vw"
+                  quality={78}
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <button
@@ -282,12 +318,15 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
                           key={image}
                           type="button"
                           onClick={() => setGalleryIndex(index)}
-                          className="group relative overflow-hidden rounded-2xl bg-slate-100 text-left"
+                          className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 text-left"
                         >
-                          <img
+                          <Image
                             src={image}
                             alt={`${selectedProject.title} gallery ${index + 1}`}
-                            className="aspect-[4/3] w-full object-cover transition duration-500 md:group-hover:scale-105"
+                            fill
+                            sizes="(min-width: 640px) 36vw, 100vw"
+                            quality={72}
+                            className="object-cover transition duration-500 md:group-hover:scale-105"
                           />
                           <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/70 to-transparent p-3 text-xs font-semibold text-white opacity-100 md:opacity-0 md:transition md:group-hover:opacity-100">
                             View image
@@ -406,10 +445,14 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
               </button>
             )}
 
-            <img
+            <Image
               src={selectedProject.gallery[galleryIndex]}
               alt={`${selectedProject.title} gallery enlarged ${galleryIndex + 1}`}
-              className="max-h-full max-w-full rounded-2xl object-contain shadow-2xl"
+              width={1600}
+              height={1200}
+              sizes="(min-width: 1024px) 80vw, 100vw"
+              quality={82}
+              className="h-auto max-h-full w-auto max-w-full rounded-2xl object-contain shadow-2xl"
             />
 
             {selectedProject.gallery.length > 1 && (

@@ -40,7 +40,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
+      className={`site-navbar sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
         navbarIsDark
           ? 'border-slate-800 bg-slate-950 text-white'
           : 'border-border/60 bg-white/90 text-slate-900'
@@ -52,13 +52,14 @@ export function Navbar() {
         <Link href="/" className="flex min-w-0 items-center gap-3 py-3" onClick={() => setMenuOpen(false)}>
           <span className="relative h-14 w-16 shrink-0 overflow-hidden" aria-hidden="true">
             <img
-              src={
-                navbarIsDark
-                  ? '/Masfy-Logo-Dark.png'
-                  : '/Masfy Logo 2025_New_Version.png'
-              }
+              src="/Masfy Logo 2025_New_Version.png"
               alt=""
-              className="absolute left-1/2 top-1/2 h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
+              className="absolute left-1/2 top-1/2 h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain dark:hidden"
+            />
+            <img
+              src="/Masfy-Logo-Dark.png"
+              alt=""
+              className="absolute left-1/2 top-1/2 hidden h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain dark:block"
             />
           </span>
           <span className="flex flex-col">
@@ -83,6 +84,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? 'page' : undefined}
                 className={`relative px-4 py-[1.35rem] text-sm font-medium transition-colors ${
                   isActive
                     ? 'text-brand-500'
@@ -157,6 +159,8 @@ export function Navbar() {
             }`}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
           >
           {menuOpen ? (
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -174,7 +178,8 @@ export function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div
-          className={`border-t px-6 pb-5 pt-3 lg:hidden ${
+          id="mobile-navigation"
+          className={`mobile-menu-enter border-t px-6 pb-5 pt-3 lg:hidden ${
             navbarIsDark
               ? 'border-slate-800 bg-slate-950'
               : 'border-border bg-white'
@@ -187,6 +192,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
                   onClick={() => setMenuOpen(false)}
                   className={`rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                     isActive

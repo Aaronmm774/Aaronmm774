@@ -3,7 +3,6 @@ import './globals.css';
 import { Navbar } from '@/components/navigation/Navbar';
 import { Footer } from '@/components/home/Footer';
 import { WhatsAppWidget } from '@/components/contact/WhatsAppWidget';
-import { ScrollRestoration } from '@/components/navigation/ScrollRestoration';
 
 const siteUrl = 'https://masfyconsultants.com';
 
@@ -73,14 +72,20 @@ const localBusinessJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('masfy-home-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d)}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-background text-slate-900 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <div className="flex min-h-screen flex-col">
-          <ScrollRestoration />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

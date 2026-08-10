@@ -46,14 +46,32 @@ const stats = [
   { value: '80+', label: 'Partner companies' },
 ];
 
+function sanityImageUrl(src: string, width: number) {
+  if (!src.startsWith('https://cdn.sanity.io/')) return src;
+
+  const separator = src.includes('?') ? '&' : '?';
+  return `${src}${separator}auto=format&fit=max&w=${width}&q=78`;
+}
+
+function sanityImageSrcSet(src: string) {
+  if (!src.startsWith('https://cdn.sanity.io/')) return undefined;
+
+  return [640, 960, 1280, 1920, 2560]
+    .map((width) => `${sanityImageUrl(src, width)} ${width}w`)
+    .join(', ');
+}
+
 export function Hero({ slides: providedSlides }: HeroProps) {
   const slides = providedSlides && providedSlides.length > 0 ? providedSlides : fallbackSlides;
   const [current, setCurrent] = useState(0);
 
-  const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
+  const next = useCallback(
+    () => setCurrent((c) => (c + 1) % slides.length),
+    [slides.length],
+  );
   const prev = useCallback(
     () => setCurrent((c) => (c - 1 + slides.length) % slides.length),
-    [],
+    [slides.length],
   );
   const goTo = useCallback((i: number) => setCurrent(i), []);
 
@@ -62,28 +80,31 @@ export function Hero({ slides: providedSlides }: HeroProps) {
     return () => clearInterval(id);
   }, [next]);
 
-  useEffect(() => {
-    slides.forEach((slide) => {
-      const image = new window.Image();
-      image.src = slide.image;
-    });
-  }, []);
+  const visibleIndexes = new Set([
+    current,
+    (current - 1 + slides.length) % slides.length,
+    (current + 1) % slides.length,
+  ]);
 
   return (
     <section className="relative w-full">
       <div className="relative min-h-[560px] w-full overflow-hidden bg-slate-100 sm:min-h-[560px] lg:min-h-[620px]">
-        {slides.map((slide, index) => (
-          <img
-            key={slide.image}
-            src={slide.image}
-            alt={slide.label}
-            loading="eager"
-            decoding="async"
-            className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
-              index === current ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+        {slides.map((slide, index) =>
+          visibleIndexes.has(index) ? (
+            <img
+              key={slide.image}
+              src={sanityImageUrl(slide.image, 1920)}
+              srcSet={sanityImageSrcSet(slide.image)}
+              alt={slide.label}
+              sizes="100vw"
+              loading="eager"
+              decoding="async"
+              className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
+                index === current ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ) : null,
+        )}
 
         <div className="absolute left-4 top-4 hidden max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:block sm:max-w-none">
           {slides[current]?.label}

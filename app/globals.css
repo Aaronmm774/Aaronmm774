@@ -8,7 +8,9 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -20,6 +22,57 @@ body {
 html.dark body {
   background: #020617;
   color: #F8FAFC;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+html.dark .site-navbar {
+  border-color: #1E293B;
+  background-color: rgb(2 6 23 / 0.96);
+  color: #FFFFFF;
+}
+
+html.dark .site-navbar .text-slate-950,
+html.dark .site-navbar .text-slate-900 {
+  color: #FFFFFF;
+}
+
+html.dark .site-navbar .text-slate-700,
+html.dark .site-navbar .text-slate-600 {
+  color: #CBD5E1;
+}
+
+@keyframes route-progress {
+  0% { transform: translateX(-120%); }
+  55% { transform: translateX(170%); }
+  100% { transform: translateX(340%); }
+}
+
+.route-progress {
+  animation: route-progress 900ms ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-enter {
+  animation: mobile-menu-enter 180ms ease-out both;
 }
 
 .theme-page {
@@ -108,9 +161,9 @@ html.dark .theme-page textarea {
   .transition,
   .transition-all,
   .transition-colors,
-  .transition-transform {
-    transition-duration: 0ms !important;
-    transition-property: none !important;
+  .transition-transform,
+  .transition-opacity {
+    transition-duration: 180ms !important;
   }
 }
 
