@@ -52,7 +52,11 @@ export function Navbar() {
         <Link href="/" className="flex min-w-0 items-center gap-3 py-3" onClick={() => setMenuOpen(false)}>
           <span className="relative h-14 w-16 shrink-0 overflow-hidden" aria-hidden="true">
             <img
-              src="/Masfy Logo 2025_New_Version.png"
+              src={
+                navbarIsDark
+                  ? '/Masfy-Logo-Dark.png'
+                  : '/Masfy Logo 2025_New_Version.png'
+              }
               alt=""
               className="absolute left-1/2 top-1/2 h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
             />
