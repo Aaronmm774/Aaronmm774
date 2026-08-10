@@ -154,7 +154,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="theme-page">
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
           <div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
             <a
               href="/Masfy%20Profile%202025.pdf"
               download
-              className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
+              className="theme-keep-light mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-100"
             >
               Download Company Profile
             </a>
@@ -360,7 +360,7 @@ export default function AboutPage() {
                   key={partner.name}
                   className="rounded-2xl border border-border bg-surface p-4"
                 >
-                  <div className="flex h-16 items-center justify-center rounded-xl bg-white p-3">
+                  <div className="theme-keep-light flex h-16 items-center justify-center rounded-xl bg-white p-3">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}

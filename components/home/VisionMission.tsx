@@ -26,41 +26,41 @@ const pillars = [
 export function VisionMission() {
   return (
     <section className="mx-auto max-w-6xl">
-      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm">
+      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="p-6 sm:p-8 lg:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
             Vision & Mission
           </p>
 
-          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-4xl">
             These foundations guide our engineering approach.
           </h2>
 
-          <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+          <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
             Masfy engineering is grounded in close client relationships,
             technical excellence, practical solutions, and collaborative design
             delivery.
           </p>
         </div>
 
-        <div className="grid border-t border-border bg-surface/70 sm:grid-cols-3">
+        <div className="grid border-t border-border bg-surface/70 dark:border-slate-800 dark:bg-slate-950/50 sm:grid-cols-3">
           {pillars.map((item) => {
             const Icon = item.icon;
 
             return (
               <article
                 key={item.title}
-                className="border-b border-border p-6 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
+                className="border-b border-border p-6 last:border-b-0 dark:border-slate-800 sm:border-b-0 sm:border-r sm:last:border-r-0"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-sm ring-1 ring-border">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-sm ring-1 ring-border dark:bg-slate-800 dark:text-blue-400 dark:ring-slate-700">
                     <Icon className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-extrabold text-slate-950">
+                    <h3 className="text-lg font-extrabold text-slate-950 dark:text-white">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                       {item.description}
                     </p>
                   </div>

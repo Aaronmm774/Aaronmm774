@@ -111,7 +111,7 @@ export const metadata: Metadata = {
 
 export default function CareersPage() {
   return (
-    <main>
+    <main className="theme-page">
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
           <div>
@@ -375,7 +375,7 @@ export default function CareersPage() {
             </div>
             <Link
               href="mailto:manza@masfyconsultants.com?subject=Application%20-%20Role%20-%20Your%20Name"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-lg shadow-slate-950/10 transition hover:bg-slate-100 md:hover:-translate-y-0.5"
+              className="theme-keep-light inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-lg shadow-slate-950/10 transition hover:bg-slate-100 md:hover:-translate-y-0.5"
             >
               <Mail className="h-4 w-4" />
               Email your CV

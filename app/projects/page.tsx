@@ -13,5 +13,9 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   const projects = await getProjects();
 
-  return <ProjectsExplorer projects={projects} />;
+  return (
+    <div className="theme-page">
+      <ProjectsExplorer projects={projects} />
+    </div>
+  );
 }

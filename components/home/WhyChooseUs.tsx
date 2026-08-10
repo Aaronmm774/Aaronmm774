@@ -28,16 +28,16 @@ const points = [
 export function WhyChooseUs() {
   return (
     <section className="mx-auto max-w-6xl">
-      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm">
+      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.82fr_1.18fr] lg:p-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
               Why choose us
             </p>
-            <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
+            <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-4xl">
               Practical engineering confidence before construction starts.
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
               We help teams reduce ambiguity, coordinate decisions and move
               forward with designs that are buildable, reviewed and practical.
             </p>
@@ -50,20 +50,20 @@ export function WhyChooseUs() {
               return (
                 <article
                   key={item.title}
-                  className="rounded-3xl border border-border bg-surface p-5"
+                  className="rounded-3xl border border-border bg-surface p-5 dark:border-slate-700 dark:bg-slate-800"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-sm ring-1 ring-border">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-sm ring-1 ring-border dark:bg-slate-900 dark:text-blue-400 dark:ring-slate-700">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-xs font-bold text-brand-500">
                         0{index + 1}
                       </p>
-                      <h3 className="mt-1 font-extrabold text-slate-950">
+                      <h3 className="mt-1 font-extrabold text-slate-950 dark:text-white">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                         {item.description}
                       </p>
                     </div>

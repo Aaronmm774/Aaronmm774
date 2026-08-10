@@ -9,6 +9,7 @@ import { Clients } from '@/components/home/Clients';
 import { CTA } from '@/components/home/CTA';
 import { getProjects } from '@/lib/projects';
 import type { Project } from '@/lib/projects';
+import { HomeTheme } from '@/components/home/HomeTheme';
 
 export const revalidate = 60;
 
@@ -29,24 +30,36 @@ export const metadata: Metadata = {
   },
 };
 
-const heroProjectOrder = [
-  { title: 'The Loft', aliases: ['the loft', 'loft'] },
-  { title: 'Jubilee', aliases: ['jubilee', 'jubilee insurance', 'jubilee insurance hq'] },
-  { title: 'Crescent Pearl', aliases: ['crescent pearl'] },
-  { title: 'Sere Village', aliases: ['sere village', 'sere'] },
-  { title: 'Loresho Houses', aliases: ['loresho houses', 'loresho'] },
-  { title: 'Keitt Avocado', aliases: ['keitt avocado', 'keitt'] },
-  { title: '254 Peponi', aliases: ['254 peponi', 'peponi'] },
+const heroProjectOrder: Array<{
+  title: string;
+  aliases: string[];
+  galleryIndex?: number;
+}> = [
+  {
+    title: 'Ritz Carlton Maasai Mara Safari',
+    aliases: ['ritz carlton maasai mara safari', 'ritz carlton', 'maasai mara safari'],
+    galleryIndex: 0,
+  },
   { title: 'Muthaiga Residence', aliases: ['muthaiga residence', 'muthaiga'] },
+  { title: 'Hillview Residence', aliases: ['hillview residence', 'hillview'] },
+  { title: 'Kuruwitu Villas', aliases: ['kuruwitu villas', 'kuruwitu'], galleryIndex: 1 },
+  { title: 'Lavington Residence', aliases: ['lavington residence', 'lavington'] },
+  { title: 'Vipingo House 4', aliases: ['vipingo house 4'] },
+  { title: 'Vipingo House 2', aliases: ['vipingo house 2'] },
+  { title: 'Ketul', aliases: ['ketul residence', 'ketul'] },
+  { title: 'Jubilee Insurance HQ', aliases: ['jubilee insurance hq', 'jubilee insurance', 'jubilee'] },
 ];
 
 function normalizeTitle(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 }
 
-function projectToHeroSlide(project: Project): HeroSlide {
+function projectToHeroSlide(project: Project, galleryIndex?: number): HeroSlide {
   return {
-    image: project.image,
+    image:
+      galleryIndex === undefined
+        ? project.image
+        : project.gallery[galleryIndex] || project.image,
     label: project.industry,
     title: project.title,
     note: project.summary || project.location,
@@ -56,24 +69,26 @@ function projectToHeroSlide(project: Project): HeroSlide {
 export default async function HomePage() {
   const projects = await getProjects();
   const heroSlides = heroProjectOrder
-    .map(({ aliases }) =>
-      projects.find((project) => {
+    .flatMap(({ aliases, galleryIndex }) => {
+      const project = projects.find((project) => {
         const projectTitle = normalizeTitle(project.title);
         return aliases.some((alias) => projectTitle.includes(normalizeTitle(alias)));
-      }),
-    )
-    .filter((project): project is NonNullable<typeof project> => Boolean(project))
-    .map(projectToHeroSlide);
+      });
+
+      return project ? [projectToHeroSlide(project, galleryIndex)] : [];
+    });
 
   return (
-    <div className="space-y-14 px-4 pt-4 sm:px-6 sm:pt-6 md:space-y-20 lg:px-12 lg:pt-8">
+    <HomeTheme>
       <Hero slides={heroSlides} />
-      <ProjectsPreview />
-      <VisionMission />
-      <ServicesPreview />
-      <WhyChooseUs />
-      <Clients />
-      <CTA />
-    </div>
+      <div className="space-y-14 px-4 py-14 sm:px-6 md:space-y-20 md:py-20 lg:px-12">
+        <ProjectsPreview />
+        <VisionMission />
+        <ServicesPreview />
+        <WhyChooseUs />
+        <Clients />
+        <CTA />
+      </div>
+    </HomeTheme>
   );
 }

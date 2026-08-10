@@ -17,6 +17,71 @@ body {
   color: #0F172A;
 }
 
+html.dark body {
+  background: #020617;
+  color: #F8FAFC;
+}
+
+.theme-page {
+  min-height: 100%;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+html.dark .theme-page {
+  background-color: #020617;
+  color: #F8FAFC;
+}
+
+html.dark .theme-page .bg-white:not(.theme-keep-light) {
+  background-color: #0F172A;
+}
+
+html.dark .theme-page .bg-surface {
+  background-color: #111827;
+}
+
+html.dark .theme-page .bg-slate-100 {
+  background-color: #1E293B;
+}
+
+html.dark .theme-page .bg-brand-50 {
+  background-color: rgb(37 99 235 / 0.14);
+}
+
+html.dark .theme-page .border-border {
+  border-color: #334155;
+}
+
+html.dark .theme-page .text-slate-950:not(.theme-keep-light),
+html.dark .theme-page .text-slate-900:not(.theme-keep-light),
+html.dark .theme-page .text-slate-800:not(.theme-keep-light) {
+  color: #F8FAFC;
+}
+
+html.dark .theme-page .text-slate-700:not(.theme-keep-light),
+html.dark .theme-page .text-slate-600:not(.theme-keep-light) {
+  color: #CBD5E1;
+}
+
+html.dark .theme-page .text-slate-500:not(.theme-keep-light) {
+  color: #94A3B8;
+}
+
+html.dark .theme-page .hover\:bg-surface:hover {
+  background-color: #1E293B;
+}
+
+html.dark .theme-page .hover\:text-slate-950:hover,
+html.dark .theme-page .hover\:text-slate-900:hover {
+  color: #FFFFFF;
+}
+
+html.dark .theme-page input,
+html.dark .theme-page select,
+html.dark .theme-page textarea {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -180,7 +180,7 @@ function CheckItem({ children, boxed = false }: { children: React.ReactNode; box
 
 export default function ServicesPage() {
   return (
-    <main>
+    <main className="theme-page">
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
           <div>
@@ -213,7 +213,7 @@ export default function ServicesPage() {
                     href={`#${service.id}`}
                     className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-4 transition hover:bg-white/[0.1]"
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700">
+                    <div className="theme-keep-light flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-brand-700">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
@@ -521,7 +521,7 @@ export default function ServicesPage() {
             <div className="flex flex-col gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-lg shadow-slate-950/10 transition hover:bg-slate-100 md:hover:-translate-y-0.5"
+                className="theme-keep-light inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 shadow-lg shadow-slate-950/10 transition hover:bg-slate-100 md:hover:-translate-y-0.5"
               >
                 Contact us
                 <ArrowRight className="h-4 w-4" />

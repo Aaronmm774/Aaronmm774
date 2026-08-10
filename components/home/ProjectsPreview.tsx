@@ -18,16 +18,16 @@ export async function ProjectsPreview() {
 
   return (
     <section className="mx-auto max-w-6xl">
-      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm">
+      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-5 p-6 sm:p-8 lg:flex-row lg:items-end lg:justify-between lg:p-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
               Projects
             </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
+            <h2 className="mt-3 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-4xl">
               Featured project work.
             </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
               A selection of Masfy projects across commercial, hospitality and
               residential developments.
             </p>
@@ -42,14 +42,14 @@ export async function ProjectsPreview() {
           </Link>
         </div>
 
-        <div className="grid border-t border-border bg-surface/70 lg:grid-cols-3">
+        <div className="grid border-t border-border bg-surface/70 dark:border-slate-800 dark:bg-slate-950/50 lg:grid-cols-3">
           {projects.map((project) => {
             const ProjectIcon = getProjectIcon(project);
 
             return (
               <article
                 key={project.title}
-                className="group border-b border-border bg-white last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+                className="group border-b border-border bg-white last:border-b-0 dark:border-slate-800 dark:bg-slate-900 lg:border-b-0 lg:border-r lg:last:border-r-0"
               >
                 <Link href="/projects" className="block h-full">
                   <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
@@ -68,17 +68,17 @@ export async function ProjectsPreview() {
 
                   <div className="p-5 sm:p-6">
                     <div className="flex items-start justify-between gap-4">
-                      <h3 className="text-xl font-extrabold leading-tight text-slate-950">
+                      <h3 className="text-xl font-extrabold leading-tight text-slate-950 dark:text-white">
                         {project.title}
                       </h3>
                       <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-slate-300 transition group-hover:text-brand-500" />
                     </div>
 
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
                       {project.summary}
                     </p>
 
-                    <div className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-sm font-semibold text-brand-500">
+                    <div className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-sm font-semibold text-brand-500 dark:border-slate-800 dark:text-blue-400">
                       <MapPinned className="h-4 w-4" />
                       {project.location}
                     </div>

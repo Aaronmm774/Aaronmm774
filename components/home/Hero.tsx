@@ -71,7 +71,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
 
   return (
     <section className="relative w-full">
-      <div className="relative min-h-[390px] overflow-hidden rounded-[1.5rem] bg-slate-100 shadow-2xl shadow-slate-950/12 sm:min-h-[460px] sm:rounded-[2rem] lg:min-h-[620px]">
+      <div className="relative min-h-[390px] w-full overflow-hidden bg-slate-100 sm:min-h-[460px] lg:min-h-[620px]">
         {slides.map((slide, index) => (
           <img
             key={slide.image}
@@ -138,13 +138,13 @@ export function Hero({ slides: providedSlides }: HeroProps) {
         </div>
       </div>
 
-      <div className="mt-6 rounded-[1.5rem] border border-border bg-white p-5 shadow-sm sm:mt-8 sm:rounded-[2rem] sm:p-7 lg:p-8">
+      <div className="mx-4 mt-6 rounded-[1.5rem] border border-border bg-white p-5 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900 sm:mx-6 sm:mt-8 sm:rounded-[2rem] sm:p-7 lg:mx-12 lg:p-8">
         <div className="grid gap-7 lg:grid-cols-[1fr_0.68fr] lg:items-center">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.26em] text-brand-500">
               Civil & structural consultancy
             </p>
-            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">
+            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-700 dark:text-slate-300 sm:text-lg">
               Masfy Consulting Engineers supports developers, architects,
               contractors and institutions with structural design, civil works,
               drainage, infrastructure planning, assessments and construction-stage
@@ -161,7 +161,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-7 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-brand-500/40 hover:text-slate-950 md:hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white px-7 py-3 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-brand-500/40 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:border-brand-500/60 dark:hover:text-white md:hover:-translate-y-0.5"
               >
                 View Our Work
               </Link>
@@ -172,12 +172,12 @@ export function Hero({ slides: providedSlides }: HeroProps) {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-border bg-surface px-3 py-4 text-center"
+                className="rounded-2xl border border-border bg-surface px-3 py-4 text-center dark:border-slate-700 dark:bg-slate-800"
               >
-                <p className="text-2xl font-extrabold leading-none text-slate-950 sm:text-3xl">
+                <p className="text-2xl font-extrabold leading-none text-slate-950 dark:text-white sm:text-3xl">
                   {stat.value}
                 </p>
-                <p className="mx-auto mt-2 max-w-24 text-[9px] font-semibold uppercase leading-4 tracking-widest text-slate-500">
+                <p className="mx-auto mt-2 max-w-24 text-[9px] font-semibold uppercase leading-4 tracking-widest text-slate-500 dark:text-slate-400">
                   {stat.label}
                 </p>
               </div>

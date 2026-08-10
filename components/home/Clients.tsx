@@ -50,16 +50,16 @@ const successSignals = [
 export function Clients() {
   return (
     <section className="mx-auto max-w-6xl">
-      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm">
+      <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div className="grid gap-7 p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:p-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
               Client Success & Partners
             </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 sm:text-4xl">
+            <h2 className="mt-3 max-w-2xl text-3xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-4xl">
               Trusted by project teams across Kenya and the region.
             </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300 sm:text-base">
               Masfy Consulting Engineers supports developers, architects,
               contractors, institutions and industrial clients with practical
               civil and structural engineering input.
@@ -69,7 +69,7 @@ export function Clients() {
               {audiences.map((audience) => (
                 <span
                   key={audience}
-                  className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-slate-700"
+                  className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
                 >
                   {audience}
                 </span>
@@ -84,13 +84,13 @@ export function Clients() {
               return (
                 <div
                   key={signal.label}
-                  className="rounded-2xl border border-border bg-surface p-5"
+                  className="rounded-2xl border border-border bg-surface p-5 dark:border-slate-700 dark:bg-slate-800"
                 >
                   <Icon className="h-5 w-5 text-brand-500" />
-                  <p className="mt-4 text-2xl font-extrabold text-slate-950">
+                  <p className="mt-4 text-2xl font-extrabold text-slate-950 dark:text-white">
                     {signal.value}
                   </p>
-                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     {signal.label}
                   </p>
                 </div>
@@ -99,12 +99,12 @@ export function Clients() {
           </div>
         </div>
 
-        <div className="border-t border-border bg-surface/70 p-6 sm:p-8">
+        <div className="border-t border-border bg-surface/70 p-6 dark:border-slate-800 dark:bg-slate-950/50 sm:p-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-500">
               Selected collaborators
             </p>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300">
               A sample of project teams and consultants Masfy has worked with
               across building and development work.
             </p>
@@ -112,20 +112,20 @@ export function Clients() {
               {partners.map((partner) => (
                 <div
                   key={partner.name}
-                  className="rounded-2xl border border-border bg-white p-4 shadow-sm"
+                  className="rounded-2xl border border-border bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800"
                 >
-                  <div className="flex h-16 items-center justify-center rounded-xl bg-surface p-3">
+                  <div className="flex h-16 items-center justify-center rounded-xl bg-surface p-3 dark:bg-white">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
                       className="max-h-full max-w-full object-contain"
                     />
                   </div>
-                  <p className="mt-3 text-sm font-extrabold leading-tight text-slate-950">
+                  <p className="mt-3 text-sm font-extrabold leading-tight text-slate-950 dark:text-white">
                     {partner.name}
                   </p>
                   {partner.detail && (
-                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                    <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">
                       {partner.detail}
                     </p>
                   )}
