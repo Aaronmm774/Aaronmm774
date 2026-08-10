@@ -89,8 +89,8 @@ export function Hero({ slides: providedSlides }: HeroProps) {
           {slides[current]?.label}
         </div>
 
-        <div className="absolute inset-x-4 top-1/2 hidden -translate-y-1/2 text-center text-white sm:inset-x-8 sm:block">
-          <h1 className="mx-auto max-w-5xl text-3xl font-extrabold leading-[1.05] tracking-tight [text-shadow:0_3px_20px_rgba(2,6,23,0.72)] sm:text-5xl lg:text-6xl">
+        <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 text-center text-white sm:inset-x-8">
+          <h1 className="mx-auto max-w-5xl text-2xl font-extrabold leading-tight tracking-tight [text-shadow:0_3px_20px_rgba(2,6,23,0.72)] sm:text-5xl sm:leading-[1.05] lg:text-6xl">
             Engineering Safe, Buildable Projects
           </h1>
         </div>
