@@ -2,10 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-const themeStorageKey = 'masfy-home-theme';
+import { useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -18,33 +15,10 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dark, setDark] = useState(false);
-  const navbarIsDark = dark;
-
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem(themeStorageKey);
-    const useDark = savedTheme
-      ? savedTheme === 'dark'
-      : window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    setDark(useDark);
-    document.documentElement.classList.toggle('dark', useDark);
-  }, []);
-
-  function toggleTheme() {
-    const next = !dark;
-    setDark(next);
-    window.localStorage.setItem(themeStorageKey, next ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', next);
-  }
 
   return (
     <header
-      className={`site-navbar sticky top-0 z-50 border-b backdrop-blur-md transition-colors duration-300 ${
-        navbarIsDark
-          ? 'border-slate-800 bg-slate-950 text-white'
-          : 'border-border/60 bg-white/90 text-slate-900'
-      }`}
+      className="sticky top-0 z-50 border-b border-border/60 bg-white/90 text-slate-900 backdrop-blur-md transition-colors duration-300"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-0 lg:px-8">
 
@@ -54,20 +28,11 @@ export function Navbar() {
             <img
               src="/Masfy Logo 2025_New_Version.png"
               alt=""
-              className="absolute left-1/2 top-1/2 h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain dark:hidden"
-            />
-            <img
-              src="/Masfy-Logo-Dark.png"
-              alt=""
-              className="absolute left-1/2 top-1/2 hidden h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain dark:block"
+              className="absolute left-1/2 top-1/2 h-16 w-auto max-w-none -translate-x-1/2 -translate-y-1/2 object-contain"
             />
           </span>
           <span className="flex flex-col">
-            <span
-              className={`text-xs font-extrabold leading-tight sm:text-base sm:leading-none ${
-                navbarIsDark ? 'text-white' : 'text-slate-950'
-              }`}
-            >
+            <span className="text-xs font-extrabold leading-tight text-slate-950 sm:text-base sm:leading-none">
               Masfy Consulting Engineers
             </span>
             <span className="mt-1 hidden text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-500 sm:block">
@@ -88,15 +53,13 @@ export function Navbar() {
                 className={`relative px-4 py-[1.35rem] text-sm font-medium transition-colors ${
                   isActive
                     ? 'text-brand-500'
-                    : navbarIsDark
-                      ? 'text-slate-300 hover:text-white'
-                      : 'text-slate-600 hover:text-slate-900'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {item.label}
                 {/* active underline */}
                 {isActive && (
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-brand-500" />
+                  <span className="nav-active-indicator absolute bottom-0 left-4 right-4 h-[2px] rounded-full bg-brand-500" />
                 )}
               </Link>
             );
@@ -105,27 +68,10 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 lg:flex">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={dark ? 'Use light mode' : 'Use dark mode'}
-            title={dark ? 'Use light mode' : 'Use dark mode'}
-            className={`flex h-10 w-10 items-center justify-center rounded-full border shadow-sm transition ${
-              navbarIsDark
-                ? 'border-slate-700 bg-slate-900 text-amber-300 hover:border-slate-600 hover:text-amber-200'
-                : 'border-border bg-white text-slate-700 hover:border-brand-500/40 hover:text-slate-950'
-            }`}
-          >
-            {dark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
-          </button>
           <a
             href="/Masfy%20Profile%202025.pdf"
             download
-            className={`rounded-full border px-5 py-2.5 text-sm font-semibold shadow-sm transition ${
-              navbarIsDark
-                ? 'border-slate-700 bg-slate-900 text-slate-200 hover:border-slate-600 hover:text-white'
-                : 'border-border bg-white text-slate-700 hover:border-brand-500/40 hover:text-slate-950'
-            }`}
+            className="rounded-full border border-border bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-brand-500/40 hover:text-slate-950"
           >
             Company Profile
           </a>
@@ -140,23 +86,7 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <div className="flex items-center gap-2 lg:hidden">
           <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={dark ? 'Use light mode' : 'Use dark mode'}
-            className={`flex h-9 w-9 items-center justify-center rounded-full border transition ${
-              navbarIsDark
-                ? 'border-slate-700 bg-slate-900 text-amber-300 hover:bg-slate-800'
-                : 'border-border text-slate-600 hover:bg-surface'
-            }`}
-          >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
-          <button
-            className={`flex h-9 w-9 items-center justify-center rounded-lg border transition lg:hidden ${
-              navbarIsDark
-                ? 'border-slate-700 text-slate-300 hover:bg-slate-800'
-                : 'border-border text-slate-600 hover:bg-surface'
-            }`}
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-slate-600 transition hover:bg-surface lg:hidden"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -179,11 +109,7 @@ export function Navbar() {
       {menuOpen && (
         <div
           id="mobile-navigation"
-          className={`mobile-menu-enter border-t px-6 pb-5 pt-3 lg:hidden ${
-            navbarIsDark
-              ? 'border-slate-800 bg-slate-950'
-              : 'border-border bg-white'
-          }`}
+          className="mobile-menu-enter border-t border-border bg-white px-6 pb-5 pt-3 lg:hidden"
         >
           <nav className="flex flex-col gap-1">
             {navLinks.map((item) => {
@@ -197,9 +123,7 @@ export function Navbar() {
                   className={`rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
                     isActive
                       ? 'bg-brand-50 text-brand-500'
-                      : navbarIsDark
-                        ? 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                        : 'text-slate-600 hover:bg-surface hover:text-slate-900'
+                      : 'text-slate-600 hover:bg-surface hover:text-slate-900'
                   }`}
                 >
                   {item.label}
@@ -207,12 +131,12 @@ export function Navbar() {
               );
             })}
           </nav>
-          <div className="mt-4 grid gap-3 border-t border-border pt-4 dark:border-slate-800">
+          <div className="mt-4 grid gap-3 border-t border-border pt-4">
             <a
               href="/Masfy%20Profile%202025.pdf"
               download
               onClick={() => setMenuOpen(false)}
-              className="block w-full rounded-full border border-border bg-white px-5 py-2.5 text-center text-sm font-semibold text-slate-700 transition hover:border-brand-500/40 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:text-white"
+              className="block w-full rounded-full border border-border bg-white px-5 py-2.5 text-center text-sm font-semibold text-slate-700 transition hover:border-brand-500/40 hover:text-slate-950"
             >
               Download Company Profile
             </a>
