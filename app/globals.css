@@ -172,9 +172,6 @@ html.dark .theme-page textarea {
     transition-duration: 180ms !important;
   }
 
-  .hero-slide-image {
-    transition-duration: 900ms, 6000ms;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

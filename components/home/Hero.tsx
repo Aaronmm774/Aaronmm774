@@ -17,22 +17,88 @@ export type HeroSlide = {
 
 const fallbackSlides: HeroSlide[] = [
   {
-    image: '/projects/Jubilee Isurance.jpg',
-    label: 'Commercial',
-    title: 'Jubilee Insurance HQ',
-    note: 'Commercial headquarters project in Nairobi, Kenya.',
+    image: '/projects/kitusuru.jpeg',
+    label: 'Residential',
+    title: 'Kitusuru Residence',
+    note: 'Contemporary residential engineering in Kitusuru, Nairobi.',
   },
   {
-    image: '/projects/Ritz Carlton.jpeg',
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.31.jpeg',
     label: 'Hospitality',
     title: 'Ritz Carlton Maasai Mara Safari',
-    note: 'Luxury hospitality project set within the Maasai Mara.',
+    note: 'Luxury hospitality development set within the Maasai Mara.',
   },
   {
-    image: '/projects/Crescent Pearl.JPG',
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.33.jpeg',
+    label: 'Commercial',
+    title: 'Skyline Mall',
+    note: 'Commercial retail development in Nairobi.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.34 (2).jpeg',
+    label: 'Commercial',
+    title: 'Commercial Development',
+    note: 'Contemporary commercial engineering and construction delivery.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.32 (1).jpeg',
     label: 'Apartments',
-    title: 'Crescent Pearl',
-    note: 'Residential apartment development in Westlands, Nairobi.',
+    title: 'Residential Apartment Community',
+    note: 'Multi-block residential development within a landscaped setting.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.34.21.jpeg',
+    label: 'Industrial',
+    title: 'Industrial Facility',
+    note: 'Large-scale industrial engineering and structural delivery.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.33 (1).jpeg',
+    label: 'Residential',
+    title: 'Contemporary Residence',
+    note: 'Modern private residence with expansive indoor-outdoor spaces.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.34.22.jpeg',
+    label: 'Mixed Developments',
+    title: 'Mixed-Use Development',
+    note: 'Integrated residential and commercial engineering delivery.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.34.20.jpeg',
+    label: 'Apartments',
+    title: 'Urban Apartment Development',
+    note: 'Large-scale urban residential development in Nairobi.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.34.21 (1).jpeg',
+    label: 'Townhouses',
+    title: 'Residential Townhouses',
+    note: 'Coordinated townhouse development and infrastructure works.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.32.jpeg',
+    label: 'Residential',
+    title: 'Private Residence',
+    note: 'Civil and structural engineering for a private home.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.34 (1).jpeg',
+    label: 'Apartments',
+    title: 'Apartment Development',
+    note: 'Residential apartment engineering and construction support.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.34.jpeg',
+    label: 'Residential',
+    title: 'Residential Development',
+    note: 'Construction-stage engineering for a contemporary residence.',
+  },
+  {
+    image: '/projects/WhatsApp Image 2026-08-11 at 11.35.35.jpeg',
+    label: 'Commercial',
+    title: 'Commercial Fit-Out',
+    note: 'Structural coordination for a contemporary commercial facility.',
   },
 ];
 
@@ -101,6 +167,7 @@ export function Hero({ slides: providedSlides }: HeroProps) {
     (current + 1) % slides.length,
   ]);
   const currentIsReady = loadedImages.has(current);
+  const isInitialSlide = previous === null && current === 0;
   const shownIndex = currentIsReady ? current : previous ?? current;
 
   function handleImageLoad(index: number) {
@@ -116,27 +183,32 @@ export function Hero({ slides: providedSlides }: HeroProps) {
   return (
     <section className="relative w-full">
       <div className="relative min-h-[560px] w-full overflow-hidden bg-slate-100 sm:min-h-[560px] lg:min-h-[620px]">
-        {slides.map((slide, index) =>
-          visibleIndexes.has(index) ? (
+        {slides.map((slide, index) => {
+          if (!visibleIndexes.has(index)) return null;
+
+          const isVisible =
+            (index === current && (currentIsReady || isInitialSlide)) ||
+            (index === previous && !currentIsReady);
+
+          return (
             <img
               key={slide.image}
               src={sanityImageUrl(slide.image, 1920)}
               srcSet={sanityImageSrcSet(slide.image)}
               alt={slide.label}
               sizes="100vw"
-              loading="eager"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'auto'}
               decoding="async"
               onLoad={() => handleImageLoad(index)}
-              className={`hero-slide-image pointer-events-none absolute inset-0 h-full w-full object-cover will-change-[opacity,transform] ${
-                index === current && currentIsReady
+              className={`hero-slide-image pointer-events-none absolute inset-0 will-change-[opacity,transform] ${
+                isVisible
                   ? 'scale-100 opacity-100'
-                  : index === previous && !currentIsReady
-                    ? 'scale-100 opacity-100'
-                    : 'scale-[1.05] opacity-0'
-              }`}
+                  : 'scale-[1.05] opacity-0'
+              } h-full w-full object-cover`}
             />
-          ) : null,
-        )}
+          );
+        })}
 
         <div className="absolute left-4 top-4 hidden max-w-[calc(100%-8rem)] truncate rounded-full bg-white/92 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-slate-950/10 backdrop-blur sm:left-6 sm:top-6 sm:block sm:max-w-none">
           {slides[shownIndex]?.label}
